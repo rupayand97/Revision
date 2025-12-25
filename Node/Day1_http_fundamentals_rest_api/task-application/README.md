@@ -1,0 +1,29 @@
+#### What is HTTP and how does it work? Explain the request-response cycle.
+##### *HyperText Transfer Protocol, is an application-layer protocol used for communication between a client and a server on the web. It works on a request–response model, where the client initiates communication by sending an HTTP request to the server, and the server responds with an HTTP response. The request typically contains a URL, an HTTP method, headers, and sometimes a body with data. The server processes this request, performs the required operation such as fetching data or updating a database, and then sends back a response that includes a status code, headers, and a response body. The client then interprets this response, for example by rendering a webpage or displaying JSON data in an application.*
+
+#### What are the different HTTP methods (GET, POST, PUT, PATCH, DELETE) and when should each be used?
+##### *HTTP methods define the type of action that should be performed on a resource. GET is used to retrieve data from the server without modifying it. POST is used to create a new resource or submit data to the server. PUT is used to completely replace an existing resource with new data, while PATCH is used to partially update a resource by modifying only specific fields. DELETE is used to remove a resource from the server. Choosing the correct method helps maintain clarity, consistency, and proper RESTful behavior in APIs.*
+
+  
+#### Explain HTTP status codes. What's the difference between 2xx, 3xx, 4xx, and 5xx?
+##### *HTTP status codes are numeric codes returned by the server to indicate the result of a client’s request. Status codes in the 2xx range represent successful requests, such as 200 for a successful response or 201 when a resource is created. The 3xx range is used for redirection, meaning the client needs to take additional action, such as accessing a different URL. The 4xx range indicates client-side errors, such as invalid requests or missing resources, with common examples being 400 for bad requests and 404 for not found. The 5xx range represents server-side errors, where the request was valid but the server failed to process it due to internal issues.*  
+
+
+#### What are HTTP headers? Name some important request and response headers.
+##### *HTTP headers are key-value pairs that provide additional information about an HTTP request or response. Request headers often include metadata such as Authorization for authentication, Content-Type to describe the format of the request body, Accept to specify the expected response format, and User-Agent to identify the client. Response headers commonly include Content-Type to indicate the format of the returned data, Set-Cookie to store information on the client, Cache-Control to define caching behavior, and Access-Control-Allow-Origin to handle cross-origin requests. Headers help both the client and server understand how to handle the data being exchanged.* 
+
+
+#### What is the difference between stateless and stateful protocols? Is HTTP stateless?
+##### *A stateless protocol is one in which each request is independent and does not rely on information from previous requests, while a stateful protocol maintains session information across multiple interactions. HTTP is stateless by design, meaning the server does not automatically remember past requests from the same client. Each HTTP request contains all the information needed to process it. However, state can be managed on top of HTTP using mechanisms such as cookies, sessions, or tokens like JWTs, which allow applications to simulate stateful behavior when required.*  
+
+
+#### Explain idempotency in REST APIs. Which HTTP methods are idempotent?
+##### *Idempotency in REST APIs refers to the property where making the same request multiple times produces the same outcome as making it once. This is important for reliability, especially in cases of retries due to network failures. HTTP methods such as GET, PUT, and DELETE are considered idempotent because repeating these requests does not change the result beyond the initial application. For example, deleting the same resource multiple times still results in the resource being deleted. POST, however, is not idempotent because repeating it can create multiple resources.*
+
+
+#### What is REST? What are the principles of RESTful API design?
+##### *Representational State Transfer(REST), is an architectural style used to design networked applications, particularly web APIs. RESTful APIs are based on resources, which are identified by URLs and manipulated using standard HTTP methods. Key principles include stateless communication, where each request contains all necessary information, a uniform interface that follows consistent conventions, clear separation between client and server, and the use of standard HTTP status codes. REST also emphasizes cacheable responses and a resource-oriented approach, making APIs scalable, simple, and easy to understand.*
+
+
+#### How would you version a REST API? What are the different approaches?
+##### *Versioning a REST API is important to handle breaking changes without affecting existing clients. One common approach is URL versioning, where the version number is included in the endpoint path, such as /api/v1/users. Another approach is header-based versioning, where the client specifies the desired version in request headers. Versioning can also be done using query parameters. Among these, URL versioning is the most widely used because it is simple, explicit, and easy to manage. API versions are typically changed only when backward-incompatible updates are introduced.*
