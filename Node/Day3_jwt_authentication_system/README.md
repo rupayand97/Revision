@@ -1,0 +1,23 @@
+### *What is JWT (JSON Web Token)? Explain its structure (header, payload, signature)*
+#### *JWT (JSON Web Token) is a compact, URL-safe token used to securely transmit information between a client and a server, mainly for authentication and authorization. A JWT has three parts separated by dots: the header, payload, and signature. The header contains metadata such as the token type and the signing algorithm. The payload contains claims, which include user-related data and standard fields like expiration time. The signature is created using the encoded header and payload along with a secret key, and it ensures that the token has not been altered. Although JWT data is encoded, it is not encrypted, so sensitive information should not be stored in it.*
+
+### *How does JWT authentication work? Explain the flow.*
+#### *JWT authentication starts when a user logs in with valid credentials. The server verifies these credentials and generates a JWT, which is sent to the client. The client stores the token and includes it in the Authorization header as a Bearer token for every subsequent request. The server validates the token on each request by checking its signature and expiration time. If the token is valid, the request is processed without the need for server-side session storage, making the system stateless.*
+
+### *What are the advantages and disadvantages of JWT over sessions?*
+#### *JWT has several advantages over session-based authentication. It is stateless, which makes it highly scalable and suitable for distributed systems and microservices. It reduces server memory usage and avoids frequent database lookups. However, JWT also has disadvantages. Tokens cannot be easily invalidated before they expire, they are larger in size than session IDs, and if stored insecurely, they can be exposed to attacks. Additionally, since JWT payloads are readable, they should not contain sensitive data.*
+
+### *Where should you store JWTs in the client? (localStorage vs cookies vs memory)*
+#### *JWTs can be stored in localStorage, cookies, or memory, each with trade-offs. Storing JWTs in localStorage is easy but vulnerable to XSS attacks and is not recommended for sensitive applications. Storing them in HttpOnly cookies is the most secure option, as they are inaccessible to JavaScript and protected against XSS, though CSRF protection must be considered. Storing JWTs in memory, such as in application state, is secure but causes the token to be lost on page refresh. For production applications, HttpOnly cookies are generally the best practice.*
+
+### *What is the difference between access tokens and refresh tokens?*
+#### *Access tokens are short-lived tokens used to access protected APIs, while refresh tokens are long-lived tokens used to obtain new access tokens when the current one expires. Access tokens are sent with every request, so they are designed to expire quickly to limit damage if compromised. Refresh tokens are used less frequently but must be stored more securely because they provide the ability to generate new access tokens.*
+
+### *How do you handle JWT expiration and refresh?*
+#### *JWT expiration is handled by including an expiration time in the token. When an access token expires, the client sends a refresh token to a dedicated refresh endpoint. The server validates the refresh token and, if valid, issues a new access token. Best practices include securely storing refresh tokens in HttpOnly cookies, rotating refresh tokens on each use, and invalidating them on logout to improve security.*
+
+### *What is Role-Based Access Control (RBAC)?*
+#### *Role-Based Access Control (RBAC) is an authorization model in which access to resources is determined by the roles assigned to users. Each role defines a set of permissions, such as admin, user, or manager. Instead of assigning permissions to individual users, permissions are assigned to roles, making the system easier to manage and scale. Roles are often included in the JWT payload to support quick authorization checks.*
+
+### *How would you implement authorization in an API?*
+#### *Authorization in an API is typically implemented using middleware. First, an authentication middleware verifies the JWT and extracts the user’s identity and role. Then, an authorization middleware checks whether the user has the required role or permissions to access a specific route. If the user is not authorized, the server responds with a forbidden error. This clear separation between authentication and authorization helps keep APIs secure, maintainable, and scalable.*
