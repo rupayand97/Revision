@@ -1,0 +1,22 @@
+const fetchUsersWithPostCount = async () => {
+  const [usersRes, postsRes] = await Promise.all([
+    fetch("https://jsonplaceholder.typicode.com/users"),
+    fetch("https://jsonplaceholder.typicode.com/posts"),
+  ]);
+
+  const users = await usersRes.json();
+  const posts = await postsRes.json();
+
+  const postCountMap = posts.reduce((acc, post) => {
+    acc[post.userId] = (acc[post.userId] || 0) + 1;
+    return acc;
+  }, {});
+
+  return users.map((user) => ({
+    userId: user.id,
+    name: user.name,
+    postCount: postCountMap[user.id] || 0,
+  }));
+};
+
+fetchUsersWithPostCount().then(console.log);
