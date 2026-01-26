@@ -1,4 +1,4 @@
-const patients = [
+const patientsData = [
   {
     id: 1,
     name: "Ramesh Kumar",
@@ -32,3 +32,4 @@ const patients = [
     status: "waiting"
   }
 ];
+export default patientsData

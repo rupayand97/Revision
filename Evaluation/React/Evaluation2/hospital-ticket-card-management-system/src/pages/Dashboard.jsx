@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import patientsData from "../data/patients"
 import { loadFormStorage, saveToStorage } from "../utils/localStorage";
 import { localStorageKeys } from "../utils/storageKeys";
 import TicketList from "../components/TicketList";
